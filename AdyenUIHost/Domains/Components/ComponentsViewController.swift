@@ -163,7 +163,7 @@ internal final class ComponentsViewController: UIViewController {
                 finish(with: response.resultCode)
             }
         case let .failure(error):
-            currentComponent?.stopLoading(withSuccess: false) { in
+            currentComponent?.stopLoading(withSuccess: false) {
                 self.presentAlert(with: error)
             }
         }
@@ -182,7 +182,7 @@ internal final class ComponentsViewController: UIViewController {
     private func finish(with resultCode: PaymentsResponse.ResultCode) {
         let success = resultCode == .authorised || resultCode == .received || resultCode == .pending
         
-        currentComponent?.stopLoading(withSuccess: success) { in
+        currentComponent?.stopLoading(withSuccess: success) {
             self.dismiss(animated: true) {
                 self.presentAlert(withTitle: resultCode.rawValue)
             }

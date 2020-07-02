@@ -65,7 +65,7 @@ private extension FormCardNumberItemView {
                 imageView.backgroundColor = style.backgroundColor
                 cardLogos.append(imageView)
                 
-                observe(logo.$isHidden) { [unowned imageView, weak self] isHidden in
+                observe(logo.$isHidden) { [unowned imageView] isHidden in
                     self.set(view: imageView, hidden: isHidden)
                 }
                 

@@ -175,8 +175,6 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
         let manager = StoredCardAlertManager(paymentMethod: paymentMethod, publicKey: publicKey, amount: payment?.amount)
         manager.localizationParameters = localizationParameters
         manager.completionHandler = { result in
-            guard let self = self else { return }
-            
             switch result {
             case let .success(details):
                 self.submit(data: PaymentComponentData(paymentMethodDetails: details))
@@ -235,11 +233,9 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
                                       style: style.textField,
                                       localizationParameters: localizationParameters)
         observe(item.$binValue) { bin in
-            guard let self = self else { return }
             self.cardComponentDelegate?.didChangeBIN(bin, component: self)
         }
         observe(item.$detectedCardTypes) { cardTypes in
-            guard let self = self else { return }
             self.cardComponentDelegate?.didChangeCardType(cardTypes, component: self)
             self.securityCodeItem.selectedCard = cardTypes?.first
         }
@@ -293,7 +289,7 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
         let footerItem = FormFooterItem(style: style.footer)
         footerItem.submitButtonTitle = ADYLocalizedSubmitButtonTitle(with: payment?.amount, localizationParameters)
         footerItem.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "footer")
-        footerItem.submitButtonSelectionHandler = { in
+        footerItem.submitButtonSelectionHandler = {
             self.didSelectSubmitButton()
         }
         return footerItem
