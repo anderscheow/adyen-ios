@@ -113,14 +113,14 @@ public final class SecuredViewController: UIViewController {
     private func listenToBackgroundNotifications() {
         let toBackgroundObserver = NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
                                                                           object: nil,
-                                                                          queue: OperationQueue.main) { [weak self] _ in
-            self?.addBlur()
+                                                                          queue: OperationQueue.main) { _ in
+            self.addBlur()
         }
         
         let backFromBackgroundObserver = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                                                 object: nil,
-                                                                                queue: OperationQueue.main) { [weak self] _ in
-            self?.removeBlur()
+                                                                                queue: OperationQueue.main) { _ in
+            self.removeBlur()
         }
         
         backgroundObservers = [toBackgroundObserver, backFromBackgroundObserver]

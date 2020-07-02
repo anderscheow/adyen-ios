@@ -26,10 +26,10 @@ internal final class RetryAPIClient: APIClientProtocol {
     }
     
     internal func perform<R>(_ request: R, completionHandler: @escaping CompletionHandler<R.ResponseType>) where R: Request {
-        apiClient.perform(request) { [weak self] result in
+        apiClient.perform(request) { result in
             var request = request
             request.counter += 1
-            self?.handle(result: result, for: request, completionHandler: completionHandler)
+            self.handle(result: result, for: request, completionHandler: completionHandler)
         }
     }
     
@@ -87,9 +87,9 @@ internal final class APIClient: APIClientProtocol {
         
         requestCounter += 1
         
-        urlSession.adyen.dataTask(with: urlRequest) { [weak self] result in
+        urlSession.adyen.dataTask(with: urlRequest) { result in
             
-            self?.requestCounter -= 1
+            self.requestCounter -= 1
             
             switch result {
             case let .success(data):

@@ -83,12 +83,12 @@ internal final class FormPhoneExtensionPickerItemView: FormValueItemView<FormPho
         let view = PhoneExtensionInputControl(inputView: pickerView, style: item.style.text)
         view.addTarget(self, action: #selector(self.handleTapAction), for: .touchUpInside)
         view.accessibilityIdentifier = item.identifier.map { ViewIdentifierBuilder.build(scopeInstance: $0, postfix: "inputControl") }
-        view.onDidBecomeFirstResponder = { [weak self] in
-            self?.isEditing = true
+        view.onDidBecomeFirstResponder = {
+            self.isEditing = true
         }
         
-        view.onDidResignFirstResponder = { [weak self] in
-            self?.isEditing = false
+        view.onDidResignFirstResponder = {
+            self.isEditing = false
         }
         
         return view

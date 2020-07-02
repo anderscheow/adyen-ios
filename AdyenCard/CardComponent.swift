@@ -174,7 +174,7 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
         Analytics.sendEvent(component: paymentMethod.type, flavor: _isDropIn ? .dropin : .components, environment: environment)
         let manager = StoredCardAlertManager(paymentMethod: paymentMethod, publicKey: publicKey, amount: payment?.amount)
         manager.localizationParameters = localizationParameters
-        manager.completionHandler = { [weak self] result in
+        manager.completionHandler = { result in
             guard let self = self else { return }
             
             switch result {
@@ -234,11 +234,11 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
                                       environment: environment,
                                       style: style.textField,
                                       localizationParameters: localizationParameters)
-        observe(item.$binValue) { [weak self] bin in
+        observe(item.$binValue) { bin in
             guard let self = self else { return }
             self.cardComponentDelegate?.didChangeBIN(bin, component: self)
         }
-        observe(item.$detectedCardTypes) { [weak self] cardTypes in
+        observe(item.$detectedCardTypes) { cardTypes in
             guard let self = self else { return }
             self.cardComponentDelegate?.didChangeCardType(cardTypes, component: self)
             self.securityCodeItem.selectedCard = cardTypes?.first
@@ -293,8 +293,8 @@ public final class CardComponent: PaymentComponent, PresentableComponent, Locali
         let footerItem = FormFooterItem(style: style.footer)
         footerItem.submitButtonTitle = ADYLocalizedSubmitButtonTitle(with: payment?.amount, localizationParameters)
         footerItem.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "footer")
-        footerItem.submitButtonSelectionHandler = { [weak self] in
-            self?.didSelectSubmitButton()
+        footerItem.submitButtonSelectionHandler = { in
+            self.didSelectSubmitButton()
         }
         return footerItem
     }()

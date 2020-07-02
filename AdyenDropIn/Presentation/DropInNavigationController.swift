@@ -62,8 +62,8 @@ internal final class DropInNavigationController: UINavigationController {
     
     private func wrapInModalController(component: PresentableComponent, isRoot: Bool) -> WrapperViewController {
         let modal = ModalViewController(rootViewController: component.viewController,
-                                        style: style) { [weak self] modal in
-            self?.cancelHandler?(modal, component as? PaymentComponent)
+                                        style: style) { modal in
+            self.cancelHandler?(modal, component as? PaymentComponent)
         }
         modal.isRoot = isRoot
         let container = WrapperViewController(child: modal)
@@ -123,7 +123,7 @@ extension DropInNavigationController: UIViewControllerTransitioningDelegate {
                                        source: UIViewController) -> UIPresentationController? {
         return DimmingPresentationController(presented: presented,
                                              presenting: presenting,
-                                             layoutDidChanged: { [weak self] in
+                                             layoutDidChanged: { in
                                                  guard let self = self,
                                                      let viewController = self.topViewController
                                                  else { return }

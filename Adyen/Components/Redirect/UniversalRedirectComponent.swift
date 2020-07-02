@@ -56,8 +56,7 @@ internal final class UniversalRedirectComponent: ActionComponent {
     /// :nodoc:
     private func openHttpSchemeUrl(_ action: RedirectAction) {
         // Try to open as a universal app link, if it fails open the in-app browser.
-        appLauncher.openUniversalAppUrl(action.url) { [weak self] success in
-            guard let self = self else { return }
+        appLauncher.openUniversalAppUrl(action.url) { success in
             if success {
                 self.registerRedirectBounceBackListener(action)
                 self.delegate?.didOpenExternalApplication(self)
@@ -84,8 +83,7 @@ internal final class UniversalRedirectComponent: ActionComponent {
     
     /// :nodoc:
     private func openCustomSchemeUrl(_ action: RedirectAction) {
-        appLauncher.openCustomSchemeUrl(action.url) { [weak self] success in
-            guard let self = self else { return }
+        appLauncher.openCustomSchemeUrl(action.url) { success in
             if success {
                 self.registerRedirectBounceBackListener(action)
                 self.delegate?.didOpenExternalApplication(self)
@@ -99,9 +97,7 @@ internal final class UniversalRedirectComponent: ActionComponent {
     
     /// :nodoc:
     private func registerRedirectBounceBackListener(_ action: RedirectAction) {
-        RedirectListener.registerForURL { [weak self] returnURL in
-            guard let self = self else { return }
-            
+        RedirectListener.registerForURL { returnURL in
             let additionalDetails = RedirectDetails(returnURL: returnURL)
             let actionData = ActionComponentData(details: additionalDetails, paymentData: action.paymentData)
             self.delegate?.didProvide(actionData, from: self)

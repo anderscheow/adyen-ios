@@ -21,8 +21,8 @@ public final class CardSecurityCodeValidator: NumericStringValidator, Observer {
         
         updateExpectedLength(from: publisher.wrappedValue)
         
-        observe(publisher) { [weak self] cardType in
-            self?.updateExpectedLength(from: cardType)
+        observe(publisher) { cardType in
+            self.updateExpectedLength(from: cardType)
         }
     }
     

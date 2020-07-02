@@ -66,7 +66,7 @@ private extension FormCardNumberItemView {
                 cardLogos.append(imageView)
                 
                 observe(logo.$isHidden) { [unowned imageView, weak self] isHidden in
-                    self?.set(view: imageView, hidden: isHidden)
+                    self.set(view: imageView, hidden: isHidden)
                 }
                 
                 logo.$isHidden.publish(false)

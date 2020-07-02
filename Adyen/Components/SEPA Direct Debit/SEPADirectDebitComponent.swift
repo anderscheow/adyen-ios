@@ -132,8 +132,8 @@ public final class SEPADirectDebitComponent: PaymentComponent, PresentableCompon
         let footerItem = FormFooterItem(style: style.footer)
         footerItem.title = ADYLocalizedString("adyen.sepa.consentLabel", localizationParameters)
         footerItem.submitButtonTitle = ADYLocalizedSubmitButtonTitle(with: payment?.amount, localizationParameters)
-        footerItem.submitButtonSelectionHandler = { [weak self] in
-            self?.didSelectSubmitButton()
+        footerItem.submitButtonSelectionHandler = {
+            self.didSelectSubmitButton()
         }
         footerItem.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "footerItem")
         return footerItem

@@ -10,10 +10,10 @@ internal final class FormCardSecurityCodeItemView: FormTextItemView<FormCardSecu
     internal required init(item: FormCardSecurityCodeItem) {
         super.init(item: item)
         accessory = .customView(cardHintView)
-        observe(item.$selectedCard) { [weak self] cardsType in
+        observe(item.$selectedCard) { cardsType in
             let number = cardsType == CardType.americanExpress ? "4" : "3"
             let localization = ADYLocalizedString("adyen.card.cvcItem.placeholder.digits", item.localizationParameters)
-            self?.textField.placeholder = String(format: localization, number)
+            self.textField.placeholder = String(format: localization, number)
         }
         
         item.$selectedCard.publish(nil)
@@ -65,7 +65,7 @@ extension FormCardSecurityCodeItemView {
             image = UIImage(named: logoResource, in: self.bundle, compatibleWith: nil)
             translatesAutoresizingMaskIntoConstraints = false
             setupConstrints()
-            observe(item.$selectedCard) { [weak self] cardType in self?.flipCard(toFront: cardType == CardType.americanExpress) }
+            observe(item.$selectedCard) { cardType in self.flipCard(toFront: cardType == CardType.americanExpress) }
         }
         
         internal required init?(coder: NSCoder) {

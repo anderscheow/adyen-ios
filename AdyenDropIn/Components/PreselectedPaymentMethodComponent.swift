@@ -81,8 +81,8 @@ internal final class PreselectedPaymentMethodComponent: LoadingComponent, Locali
         item.title = ADYLocalizedSubmitButtonTitle(with: payment?.amount, localizationParameters)
         item.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "submitButton")
         let component = self.defaultComponent
-        item.buttonSelectionHandler = { [weak self] in
-            self?.delegate?.didProceed(with: component)
+        item.buttonSelectionHandler = { in
+            self.delegate?.didProceed(with: component)
         }
         return item
     }()
@@ -91,8 +91,8 @@ internal final class PreselectedPaymentMethodComponent: LoadingComponent, Locali
         let item = FormButtonItem(style: style.secondaryButtonItem)
         item.title = ADYLocalizedString("adyen.dropIn.preselected.openAll.title", localizationParameters)
         item.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "openAllButton")
-        item.buttonSelectionHandler = { [weak self] in
-            self?.delegate?.didRequestAllPaymentMethods()
+        item.buttonSelectionHandler = { in
+            self.delegate?.didRequestAllPaymentMethods()
         }
         return item
     }()

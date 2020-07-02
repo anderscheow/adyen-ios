@@ -86,8 +86,8 @@ public final class QiwiWalletComponent: PaymentComponent, PresentableComponent, 
     internal lazy var footerItem: FormFooterItem = {
         let footerItem = FormFooterItem(style: style.footer)
         footerItem.submitButtonTitle = ADYLocalizedString("adyen.continueTo", localizationParameters, qiwiWalletPaymentMethod.name)
-        footerItem.submitButtonSelectionHandler = { [weak self] in
-            self?.didSelectSubmitButton()
+        footerItem.submitButtonSelectionHandler = { 
+            self.didSelectSubmitButton()
         }
         footerItem.identifier = ViewIdentifierBuilder.build(scopeInstance: self, postfix: "footerItem")
         return footerItem

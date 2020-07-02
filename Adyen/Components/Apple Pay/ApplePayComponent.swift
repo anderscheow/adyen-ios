@@ -188,8 +188,8 @@ public class ApplePayComponent: NSObject, PaymentComponent, PresentableComponent
                                                 message: ADYLocalizedString("adyen.error.unknown", localizationParameters),
                                                 preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: ADYLocalizedString("adyen.dismissButton", localizationParameters),
-                                          style: .default) { [weak self] _ in
-            self?.handle(
+                                          style: .default) { _ in
+            self.handle(
                 UnknownError(
                     errorDescription: "Failed to instantiate PKPaymentAuthorizationViewController because of unknown error"
                 )

@@ -26,8 +26,7 @@ extension PaymentComponent {
             delegate?.didSubmit(data, from: component ?? self)
             return
         }
-        data.dataByAddingBrowserInfo { [weak self] in
-            guard let self = self else { return }
+        data.dataByAddingBrowserInfo {
             self.delegate?.didSubmit($0, from: component ?? self)
         }
     }

@@ -32,11 +32,11 @@ internal final class StoredCardAlertManager: NSObject, UITextFieldDelegate, Loca
         let message = ADYLocalizedString("adyen.card.stored.message", localizationParameters, displayInformation.title)
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addTextField(configurationHandler: { [weak self] textField in
+        alertController.addTextField(configurationHandler: { textField in
             textField.textAlignment = .center
             textField.keyboardType = .numberPad
-            textField.placeholder = ADYLocalizedString("adyen.card.cvcItem.placeholder", self?.localizationParameters)
-            textField.accessibilityLabel = ADYLocalizedString("adyen.card.cvcItem.title", self?.localizationParameters)
+            textField.placeholder = ADYLocalizedString("adyen.card.cvcItem.placeholder", self.localizationParameters)
+            textField.accessibilityLabel = ADYLocalizedString("adyen.card.cvcItem.title", self.localizationParameters)
             textField.delegate = self
         })
         

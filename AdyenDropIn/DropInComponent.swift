@@ -98,8 +98,8 @@ public final class DropInComponent: NSObject, PresentableComponent {
     private lazy var navigationController: DropInNavigationController = {
         DropInNavigationController(rootComponent: self.rootComponent,
                                    style: style.navigation,
-                                   cancelHandler: { [weak self] isRoot, component in
-                                       self?.didSelectCancelButton(isRoot: isRoot, component: component)
+                                   cancelHandler: { isRoot, component in
+                                       self.didSelectCancelButton(isRoot: isRoot, component: component)
         })
     }()
     

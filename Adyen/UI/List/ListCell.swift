@@ -43,8 +43,8 @@ public final class ListCell: UITableViewCell {
     internal var isEnabled = true {
         didSet {
             let opacity: Float = isEnabled ? 1.0 : 0.3
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                self?.layer.opacity = opacity
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseInOut], animations: {
+                self.layer.opacity = opacity
             }, completion: nil)
         }
     }

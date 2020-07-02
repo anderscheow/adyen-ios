@@ -65,9 +65,7 @@ internal final class WebRedirectComponent: NSObject, PresentableComponent, Actio
             safariViewController.dismissButtonStyle = .cancel
         }
         
-        RedirectListener.registerForURL { [weak self] returnURL in
-            guard let self = self else { return }
-            
+        RedirectListener.registerForURL { returnURL in
             let additionalDetails = RedirectDetails(returnURL: returnURL)
             self.delegate?.didProvide(ActionComponentData(details: additionalDetails, paymentData: self.paymentData), from: self)
         }

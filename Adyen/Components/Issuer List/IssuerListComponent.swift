@@ -60,9 +60,7 @@ public final class IssuerListComponent: PaymentComponent, PresentableComponent {
                                                         paymentMethod: issuerListPaymentMethod,
                                                         environment: environment)
             listItem.showsDisclosureIndicator = false
-            listItem.selectionHandler = { [weak self] in
-                guard let self = self else { return }
-                
+            listItem.selectionHandler = {
                 let details = IssuerListDetails(paymentMethod: self.issuerListPaymentMethod,
                                                 issuer: issuer.identifier)
                 self.submit(data: PaymentComponentData(paymentMethodDetails: details))
