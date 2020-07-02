@@ -124,9 +124,7 @@ extension DropInNavigationController: UIViewControllerTransitioningDelegate {
         return DimmingPresentationController(presented: presented,
                                              presenting: presenting,
                                              layoutDidChanged: {
-                                                 let viewController = self.topViewController
-                                                 else { return }
-                                                 self.updateFrame(for: viewController)
+                                                 self.updateFrame(for: self.topViewController)
         })
     }
     
